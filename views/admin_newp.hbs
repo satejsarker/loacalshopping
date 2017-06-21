@@ -1,0 +1,44 @@
+<html>
+    <head>
+         <script src="js/amazings.js"></script>
+        <style>
+            h5{
+            color: darkgoldenrod;
+            }
+            p{
+                color: cornflowerblue;
+            }
+            </style>
+    <script type="text/JavaScript">
+        function AutoRefresh( t ) {
+               setTimeout("location.reload(true);", t);
+            }
+      </script>
+    </head>
+    <body>
+
+     {{#each testing}}
+
+  {{#each this}}  
+<div class="well">
+     <h2>   {{this.bname}} </h2>
+    <button class="btn btn-primary pull-right" data-toggle="collapse"  href="#test_{{id}}" aria-expanded="true" aria-controls="test_{{id}}">
+      <span class="view details" aria-hidden="true">view details</span>  </button>
+    <div id="test_{{id}}"  class="collapse">
+    <h5> locatiion: {{this.city}}</h5>
+    <h5> state: {{this.state}}</h5>
+    <p><strong>locality: </strong>{{this.locality}}</p>
+
+    <p><strong>email:<strong>{{this.email}}</p>
+    <p> mobile:{{this.mobile}}</p>
+    
+    <button class="btn btn-danger delete-testr" data-id="{{this.id}}"onclick="JavaScript:AutoRefresh(1000);">
+    <span class="glyphicon glyphicon-remove"  aria-hidden="true" >{{this.id}}DELETE</span></button>
+    </div>
+ {{/each}}
+</div>
+
+ {{/each}}
+    <!-- Modal -->
+</body>
+</html>

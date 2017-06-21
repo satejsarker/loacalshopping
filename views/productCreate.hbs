@@ -1,0 +1,52 @@
+	<html>
+        <head>
+            <script src="/node_modules/angular/angular.js"></script>
+        </head>			
+
+<form class="Address" method="post" action="/breg" >
+<fieldset>
+	<div class="form-group"> 
+		<label for="bname" class="control-label" id="bname"><h2>Business name</h2> </label>
+		<input type="text" class="form-control" id="bname" name="bname" placeholder=" business Name" required>
+	</div>	
+
+						
+						
+	<div class="form-group"> <!-- City-->
+		<label for="city" class="control-label" id="">City</label>
+		<input type="text" class="form-control" id="city" name="city" placeholder="Smallville" required>
+	</div>	
+	<div class="form-group">
+		<label for="state" class="control-label" id="state">State</label>
+		<input type="text" class="form-control" id="state" name="state" placeholder="your state name" required>
+	</div>								
+							
+	
+	<div class="form-group"> 
+		<label for="Locality" class="control-label">Locality</label>
+		<input type="text" class="form-control" id="locality" name="locality" placeholder="Smallville" required>
+	</div>	
+	
+	<div class="form-group"> <!-- Zip Code-->
+		<label for="zip" class="control-label">Zip Code</label>
+		<input type="number" class="form-control" id="zip" name="zip" placeholder="560090"  maxlength="6" required autofocus>
+	</div>		
+	<div class="form-group"> <!-- Street 1 -->
+		<label for="street1_id" class="control-label" id="address">Street Address </label>
+		<input type="text" class="form-control" id="address" name="address" placeholder="Street address, P.O. box, company name, c/o">
+	</div>
+	<div class="form-group"> <!-- Street 1 -->
+		<label for="street1_id" class="control-label" id="address">email</label>
+		<input type="email" class="form-control" id="email" name="email" placeholder="E-mail Address" required autofocus>
+	</div>
+	<div class="form-group"> <!-- Street 1 -->
+		<label for="mobile" class="control-label" id="address">mobile</label>
+		<input type="number" class="form-control" id="mobile" name="mobile" min="10" maxlength="12" placeholder="8892726625" required autofocus>
+	</div>
+	<div class="form-group"> <!-- Submit Button -->
+    <!--<input type="hidden" name="_csrf" value="{{ csrfToken }}">-->
+		<button type="submit" class="btn btn-primary" >Register  </button>
+	</div>     
+	</fieldset>
+</form>
+</html>

@@ -1,0 +1,252 @@
+<html>
+<head>
+	<script src="js/online.js"></script>
+	<script type="text/JavaScript">
+        function AutoRefresh( t ) {
+               setTimeout("location.reload(true);", t);
+            }
+      </script>
+<style>
+        	.row{
+		    margin-top:100px;
+		    padding: 0 10px;
+		}
+		.clickable{
+		    cursor: pointer;   
+		}
+
+		.panel-heading div {
+			margin-top: -18px;
+			font-size: 15px;
+		}
+		.panel-heading div span{
+			margin-left:5px;
+		}
+		.panel-body{
+			display: none;
+		}
+    </style>
+    <script>
+        /**
+*   I don't recommend using this plugin on large tables, I just wrote it to make the demo useable. It will work fine for smaller tables 
+*   but will likely encounter performance issues on larger tables.
+*
+*		<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Developers" />
+*		$(input-element).filterTable()
+*		
+*	The important attributes are 'data-action="filter"' and 'data-filters="#table-selector"'
+*/
+(function(){
+    'use strict';
+	var $ = jQuery;
+	$.fn.extend({
+		filterTable: function(){
+			return this.each(function(){
+				$(this).on('keyup', function(e){
+					$('.filterTable_no_results').remove();
+					var $this = $(this), 
+                        search = $this.val().toLowerCase(), 
+                        target = $this.attr('data-filters'), 
+                        $target = $(target), 
+                        $rows = $target.find('tbody tr');
+                        
+					if(search == '') {
+						$rows.show(); 
+					} else {
+						$rows.each(function(){
+							var $this = $(this);
+							$this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+						})
+						if($target.find('tbody tr:visible').size() === 0) {
+							var col_count = $target.find('tr').first().find('td').size();
+							var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">No results found</td></tr>')
+							$target.find('tbody').append(no_results);
+						}
+					}
+				});
+			});
+		}
+	});
+	$('[data-action="filter"]').filterTable();
+})(jQuery);
+
+$(function(){
+    // attach table filter plugin to inputs
+	$('[data-action="filter"]').filterTable();
+	
+	$('.container').on('click', '.panel-heading span.filter', function(e){
+		var $this = $(this), 
+			$panel = $this.parents('.panel');
+		
+		$panel.find('.panel-body').slideToggle();
+		if($this.css('display') != 'none') {
+			$panel.find('.panel-body input').focus();
+		}
+	});
+	$('[data-toggle="tooltip"]').tooltip();
+})
+        </script>
+</head>
+<body align="center">
+		<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#formModal" >
+        Add
+</button>
+<div align="center" class="wall" >
+    
+    	<div class="wall">
+			<div class="col-md-9">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Order </h3>
+						<div class="pull-right"> 
+							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+								<i class="glyphicon glyphicon-filter"></i>
+							</span>
+						</div>
+					</div>
+					<div class="panel-body">
+						<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="filter Products" />
+					</div>
+					<table class="table table-hover" id="dev-table" si>
+						<thead>
+							<tr>
+								<th>#ID</th>
+								<th>imagePath </th>
+								<th>title</th>
+								<th> description</th>
+								<th>price</th>
+								<th>catagory</th>
+								<th>Operation </th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each testing}}
+							<tr>
+								{{#each this}}
+								<td>{{this._id}}</td>
+								<td><img src="{{this.imagePath}}" width="30px" height="30px"></td>
+								<td>{{this.title}}</td>
+								<td>{{this.description}}</td>
+								<td> {{this.price}}</td>
+								<td>{{this.catagory}}</td>
+								<th><button class="btn btn-danger delete-test" data-id="{{this._id}}"onclick="JavaScript:AutoRefresh(1000);">
+    <span class="glyphicon glyphicon-remove"  aria-hidden="true" ></span></button>
+	<button class="btn btn-info edit-test"
+	data-id="{{this._id}}"
+	data-imagePath="{{this.imagePath}}"
+	data-title="{{this.imagePath}}"
+	data-description="{{this.description}}"
+	data-price="{{this.price}}"
+	data-catagory="{{this.catagory}}"
+	>
+    <span class="glyphicon glyphicon-edit"  aria-hidden="true" data-toggle="modal" data-target="#editformModal"></span></button>
+                                {{/each}}
+							</tr>
+                            {{/each}}
+						</tbody>
+					</table>
+				</div>
+			</div>
+    	</div>
+		<!--add option-->
+		 <!-- Modal -->
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <form method="post" action="/addon" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add </h4>
+            </div>
+            <div class="modal-body">
+            
+                        <div class="form-group">
+                            <label class="control-label">image(shoulbe saved image in directory) write file name in last only (file browse)</label>
+                            <input type="text" class="form-control" name="link" id="link" value="images/car/" />
+                             <input type="file" class="form-control" name="linkf"  id="linkf"/>
+                         </div>
+                         
+                        <div class="form-group">
+                            <label class="control-label">description</label>
+                            <input type="text" class="form-control input-lgx" name="description" required autofocus/>
+                         </div>
+                         
+                         <div class="form-group">
+                            <label>price</label>
+                            <input type="number" class="form-control" name="price" required />
+                         </div>
+
+                          
+                         <div class="form-group">
+                            	<label for="pnames" class=" control-label">Title</label>
+                            <input type="text" class="form-control" name="pnames" required />
+                         </div>
+                         <div class="form-group">
+                         <label class="control-label">catagory</label>
+                                <select name="catagory" class="form-control">
+                                        <option value="wine" selected>wine</option>
+                                        <option value="food">food</option>
+                            
+                                        <option value="male"> males clothes</option>
+										<option value="female"> females cclothes</option>
+                                 </select>
+                         </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-primary" value="save" onclick="JavaScript:AutoRefresh(1000);"> </input>
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+		 <!--edit  Modal -->
+<div class="modal fade" id="editformModal" tabindex="-1" role="dialog" aria-labelledby="editformModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <form method="post" action="/changes" >
+        
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">EDIT FORM</h4>
+            </div>
+            <div class="modal-body">
+            
+                        <div class="form-group">
+                            <label class="control-label">image(shoulbe saved image in directory) write file name in last only (file browse)</label>
+                            <input type="text" class="form-control"   name="link" id="link" value="images/" />
+                             <input type="file" class="form-control" name="linkf"  id="linkf"/>
+                         </div>
+                         
+                        <div class="form-group">
+                            <label class="control-label">description</label>
+                            <textarea type="text" class="form-control input-lgx"  id="edit-form-description" name="description" required autofocus></textarea>
+                         </div>
+                         
+                         <div class="form-group">
+                            <label>price</label>
+                            <input type="number" class="form-control" name="price"  id="edit-form-price" required />
+                         </div>
+
+                        
+                         
+                        
+                         <div class="form-group">
+                         <label class="control-label">catagory</label>
+                                <input  type="text" name="catagory" class="form-control"  id="edit-form-catagory" >
+                                        
+                         </div>
+                          
+                         <input type="hidden" id="edit-form-id"  name="id"/>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-primary" value="save Changes" onclick="JavaScript:AutoRefresh(1000);"> </input>
+            </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <script type="text/JavaScript">
+         <!--
+            function AutoRefresh( t ) {
+               setTimeout("location.reload(true);", t);
+            }
+      </script>
+        <style>
+	  .badge {
+  padding: 1px 9px 2px;
+  font-size: 12.025px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: #ffffff;
+  background-color: #999999;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+.badge:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+            .badge-success {
+  background-color: #468847;
+}
+span.glyphicon-eye-open
+{
+    display: block; /* or inline-block */
+}
+	  </style>
+  </head>
+{{#each product}}
+
+  {{#each this}}
+  <form method="post" action="/like">
+  <div class="row">
+<div class="panel panel-default">
+  <div class="panel-heading"><input type="text" name="name" id="name" readonly value="{{this.pnames}}"></div>
+  <div class="panel-body">
+      <span class="badge badge-success"> Likes:{{this.likes}}</span> </P><button type="submit" id="like" name="like" onclick="JavaScript:AutoRefresh(1000);"><a class="btn btn-default glyphicon glyphicon-hand-up"></a></button>
+      <img src="{{this.link}}" class="img-thumbnail" alt="{{this.pnames}}" width="150" height="200"> 
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Mobile</button>
+</form>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-danger" data-dismiss="modal" data-toggle="modal" >&times;</button>
+          <h4 class="modal-title">Mobile:</h4>
+        </div>
+        <div class="modal-body">
+          <p>{{this.mobile}}</a><p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+      
+    <pre> Description</pre>{{this.description}}
+   
+  </div>
+</div>
+
+{{/each}}
+</div>
+
+{{/each}}

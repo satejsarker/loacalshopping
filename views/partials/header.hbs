@@ -1,0 +1,83 @@
+  
+  <style>
+	  .badge {
+  padding: 1px 9px 2px;
+  font-size: 12.025px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: #ffffff;
+  background-color: #999999;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+.badge:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+            .badge-success {
+  background-color: #468847;
+}
+span.glyphicon-eye-open
+{
+    display: block; /* or inline-block */
+}
+	  </style>
+  <div class="wall">
+	<nav class="navbar-static-top">
+		<ul class="menu">
+			<li><a href="/"><span class="iconic home"></span> Home</a></li>&nbsp;&nbsp;
+			<li><a href="/product">&nbsp;<span class="iconic plus-alt"></span>&nbsp; Product Registration</a>
+			</li>
+			</li>
+			<li><a href="#"><span class="glyphicon glyphicon-eye-open" display="block"></span> Online </a>
+				<ul>
+					
+					<li><a href="/wine">Liquor</a></li>
+					<li><a href="/food">Food</a></li>
+					<li><a href="/female">Female cloth</a></li>
+					<li><a href="/male">Male cloth</a></li>
+					
+					
+				
+				</ul>
+			</li>
+			<li><a href="#"><span class="iconic mail"></span> Contact</a>
+				<ul>
+					<li><a href="/contact">Contact Us</a></li>
+					<li><a href="#">Directions</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="/shoppping-cart"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+				<span class="badge badge-success">&nbsp{{session.cart.totalQty}}</span>
+				</a>
+			<li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a>
+				<ul>
+					{{# if login}}
+					<li><a href="/profile">User Account</a></li>
+					<li><a href="logout">Log out</a></li>
+					{{ else }}
+					<li><a href="/singup">Sing Up</a></li>
+					<li><a href="/singin">Sing In</a></li>
+					{{/if}}
+					
+				</ul>
+			</li>
+		</ul>
+		<div class="clearfix"></div>
+	
+
+	</nav>
+	
+	</div>

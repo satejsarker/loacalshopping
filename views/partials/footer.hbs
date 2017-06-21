@@ -1,0 +1,140 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+ function IsMobileNumber(mobile) {
+    var mob = /^[1-9]{1}[0-9]{9}$/;
+    var txtMobile = document.getElementById(mobile);
+    if (mob.test(mobile.value) == false) {
+        alert("Please enter valid mobile number.");
+        txtMobile.focus();
+        return false;
+    }
+    return true;
+}
+
+  </script>
+<style>        
+    @import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+ 
+#footer {
+    border-top: 5px solid #CDB380;
+    background: #033649 none repeat scroll 0% 0%;
+    padding-top: 30px;
+    margin-top: 60px;
+    clear: both;
+    color: #AAA;
+    display: block;
+}
+
+#footer .widgettitle {
+    margin: 0px;
+    padding: 0px 0px 15px;
+    border-bottom: medium none;
+}
+#footer h4 {
+    color: #FFF;
+}
+
+#footer ul {
+    list-style: outside none none;
+}
+
+#footer li {
+    padding: 7px 0px;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+    margin: 0px;
+}
+
+#footer li a {
+    color: #DDD;
+}
+
+#sub-floor {
+    color: #AAA;
+    background: #031634 none repeat scroll 0% 0%;
+    padding: 10px 0px;
+}
+
+
+</style>
+</head>
+<footer id="footer" class="clearfix">
+      <div id="footer-widgets">
+
+        <div class="container">
+
+        <div id="footer-wrapper">
+
+          <div class="row">
+            <div class="col-sm-6 col-md-2">
+              <div id="meta-3" class="widget widgetFooter widget_meta">
+              <h4 class="widgettitle">Important Page :</h4>
+              <ul>
+    		  <li><a href="/"><i class="fa fa-home fa-fw"></i> Home</a></li>
+			  <li><a href="#"><i class="fa fa-envelope fa-fw"></i> Contact Us</a></li>
+             </ul>
+</div>      </div> <!-- end widget1 -->
+
+            <div class="col-sm-6 col-md-2">
+              		<div id="recent-posts-3" class="widget widgetFooter widget_recent_entries">
+                    <h4 class="widgettitle">Our social media :</h4>
+                    <ul>
+					<li>
+				     <a href="#" target="_blank"><i class="fa fa-facebook"></i> Facebook</a>
+					</li>
+					<li>
+				      <a href="#" target="_blank"><i class="fa fa-twitter"></i> Twitter</a>
+					</li>
+					<li>
+				      <a href="#" target="_blank"><i class="fa fa-youtube"></i> Youtube</a>
+				   </li>
+				</ul>
+		</div>            </div> <!-- end widget1 -->
+<form  method="post">
+            <div class="col-sm-6 col-md-4">
+              <div id="meta-4" class="widget widgetFooter widget_meta">
+              <h4 class="widgettitle">Subscribe :</h4>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><label for="email" class="col-sm-2 control-label">E-mail</label></span>
+                  <input class="form-control" name="email" id="email" placeholder="Write your email .." type="email" required autofocus>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><label for="mobile" class="col-sm-2 control-label">Mobile</label></span>
+                  <input class="form-control" name="mobile" id="mobile" onblur="return ValidateMobNumber('mobile')" placeholder="+96777000000" type="number"   required autofocus>
+                   <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Subscribe !</button>
+                  </span>
+                </div>
+              </div>
+
+
+              </div>
+             </div> <!-- end widget1 -->
+</form>
+
+          </div> <!-- end .row -->
+
+        </div> <!-- end #footer-wrapper -->
+
+        </div> <!-- end .container -->
+      </div> <!-- end #footer-widgets -->
+
+      <div id="sub-floor">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 copyright">
+             Copy right for Local Search © 2017
+            </div>
+            <div class="col-md-4 col-md-offset-4 attribution">
+             Developer by  <a target="_blank" href="#">satej sarker</a> .
+            </div>
+          </div> <!-- end .row -->
+        </div>
+      </div>
+
+    </footer>

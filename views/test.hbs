@@ -1,0 +1,161 @@
+<html>
+    <head>
+    <script type="text/JavaScript">
+        function AutoRefresh( t ) {
+               setTimeout("location.reload(true);", t);
+            }
+      </script>
+    </head>
+    <body>
+<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#formModal" >
+        Add
+</button>
+<br/>
+     {{#each testing}}
+
+  {{#each this}}  
+<div class="row">
+     <h2>   {{this.pnames}} </h2>
+    <button class="btn btn-primary pull-right" data-toggle="collapse"  href="#test_{{id}}" aria-expanded="true" aria-controls="test_{{id}}">
+      <span class="view details" aria-hidden="true">view details</span>  </button>
+    <div id="test_{{id}}"  class="collapse">
+    <h5> locatiion: {{this.city}}</h5>
+    <h5> price: {{this.price}}</h5>
+    <p><strong>Description: </strong>{{this.description}}</p>
+
+    <p><strong>catagory:<strong>{{this.catagory}}</p>
+    <button class="btn btn-info edit-test" 
+    data-id="{{this.id}}"
+    data-link="{{this.link}}"
+    data-description="{{this.description}}"
+    data-price="{{this.price}}"
+    data-city="{{this.city}}"
+    data-pnames="{{this.pnames}}"
+    data-catagory="{{this.catagory}}"
+    data-mobile="{{this.mobile}}">
+    <span class="glyphicon glyphicon-edit"  aria-hidden="true" data-toggle="modal" data-target="#editformModal">EDIT</span></button>
+    <button class="btn btn-danger delete-test" data-id="{{this.id}}"onclick="JavaScript:AutoRefresh(1000);">
+    <span class="glyphicon glyphicon-remove"  aria-hidden="true" >DELETE</span></button>
+    </div>
+ {{/each}}
+</div>
+
+ {{/each}}
+    <!-- Modal -->
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <form method="post" action="/add" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add </h4>
+            </div>
+            <div class="modal-body">
+            
+                        <div class="form-group">
+                            <label class="control-label">image(shoulbe saved image in directory) write file name in last only (file browse)</label>
+                            <input type="text" class="form-control" name="link" id="link" value="images/car/" />
+                             <input type="file" class="form-control" name="linkf"  id="linkf"/>
+                         </div>
+                         
+                        <div class="form-group">
+                            <label class="control-label">description</label>
+                            <input type="text" class="form-control input-lgx" name="description" required autofocus/>
+                         </div>
+                         
+                         <div class="form-group">
+                            <label>price</label>
+                            <input type="number" class="form-control" name="price" required />
+                         </div>
+
+                          <div class="form-group">
+                            <label class="control-label">Location</label>
+                            <input type="text" class="form-control" name="city" required />
+                         </div>
+                         
+                         <div class="form-group">
+                            	<label for="pnames" class=" control-label">busines name</label>
+                            <input type="text" class="form-control" name="pnames" required />
+                         </div>
+                         <div class="form-group">
+                         <label class="control-label">catagory</label>
+                                <select name="catagory" class="form-control">
+                                        <option value="bar" selected>bar</option>
+                                        <option value="food">food</option>
+                                        <option value="car">car</option>
+                                        <option value="clothes">clothes</option>
+                                 </select>
+                         </div>
+                          <div class="form-group">
+                            <label>Mobile</label>
+                            <input type="number" class="form-control" name="mobile" required />
+                         </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-primary" value="save" onclick="JavaScript:AutoRefresh(1000);"> </input>
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+  <!--edit  Modal -->
+<div class="modal fade" id="editformModal" tabindex="-1" role="dialog" aria-labelledby="editformModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <form method="post" action="/edit" >
+        
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">EDIT FORM</h4>
+            </div>
+            <div class="modal-body">
+            
+                        <div class="form-group">
+                            <label class="control-label">image(shoulbe saved image in directory) write file name in last only (file browse)</label>
+                            <input type="text" class="form-control"  id="edit-form-link" name="link" id="link" value="images/car/" />
+                             <input type="file" class="form-control" name="linkf"  id="linkf"/>
+                         </div>
+                         
+                        <div class="form-group">
+                            <label class="control-label">description</label>
+                            <textarea type="text" class="form-control input-lgx"  id="edit-form-description" name="description" required autofocus></textarea>
+                         </div>
+                         
+                         <div class="form-group">
+                            <label>price</label>
+                            <input type="number" class="form-control" name="price"  id="edit-form-price" required />
+                         </div>
+
+                          <div class="form-group">
+                            <label class="control-label">Location</label>
+                            <input type="text" class="form-control" name="city"  id="edit-form-city" required />
+                         </div>
+                         
+                         <div class="form-group">
+                            	<label for="pnames" class=" control-label">busines name</label>
+                            <input type="text" class="form-control" name="pnames"  id="edit-form-pnames" required />
+                         </div>
+                         <div class="form-group">
+                         <label class="control-label">catagory</label>
+                                <input  type="text" name="catagory" class="form-control"  id="edit-form-catagory" >
+                                        
+                         </div>
+                          <div class="form-group">
+                            <label>Mobile</label>
+                            <input type="number" class="form-control"  id="edit-form-mobile" name="mobile" required />
+                         </div>
+                         <input type="hidden" id="edit-form-id"  name="id"/>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-primary" value="save Changes" onclick="JavaScript:AutoRefresh(1000);"> </input>
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

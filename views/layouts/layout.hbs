@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="images\icon\c.png" />
+    <script src="javascripts/Index.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script  type="text/javascript" src="js/typeahead.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('input.typeahead').typeahead({
+        name: 'countries',
+        remote: 'http://192.168.0.104:3000/search?key=%QUERY',
+       // remote: 'http://localhost:3000/search?key=%QUERY',
+        limit: 6
+    });
+$("input.city").typeahead({
+        name: 'citys',
+         remote: 'http://192.168.0.104:3000/location?key=%QUERY',
+        //remote: 'http://localhost:3000/location?key=%QUERY',
+        limit: 6
+    });
+});
+</script>
+<style type="text/css">
+		.bs-example{
+			font-family: sans-serif;
+			position: relative;
+			margin: 50px;
+		}
+		.typeahead, .tt-query, .tt-hint {
+			border: 2px solid #CCCCCC;
+			border-radius: 8px;
+			font-size: 24px;
+			height: 30px;
+			line-height: 30px;
+			outline: medium none;
+			padding: 8px 12px;
+			width: 396px;
+		}
+		.typeahead {
+			background-color: #FFFFFF;
+		}
+		.city {
+            border: 2px solid #CCCCCC;
+            border-radius: 8px 8px 8px 8px;
+            font-size: 24px;
+            height: 45px;
+            line-height: 30px;
+            outline: medium none;
+            padding: 8px 12px;
+            width: 400px;
+        }
+
+
+		.typeahead:focus {
+			border: 2px solid #0097CF;
+		}
+		.tt-query {
+			box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+		}
+		.tt-hint {
+			color: #999999;
+		}
+		.tt-dropdown-menu {
+			background-color: #FFFFFF;
+			border: 1px solid rgba(0, 0, 0, 0.2);
+			border-radius: 8px;
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+			margin-top: 12px;
+			padding: 8px 0;
+			width: 422px;
+		}
+		.tt-suggestion {
+			font-size: 24px;
+			line-height: 24px;
+			padding: 3px 20px;
+		}
+		.tt-suggestion.tt-is-under-cursor {
+			background-color: #0097CF;
+			color: #FFFFFF;
+		}
+		.tt-suggestion p {
+			margin: 0;
+		}
+    .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+     .badge {
+  padding: 1px 9px 2px;
+  font-size: 12.025px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: #ffffff;
+  background-color: #999999;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+.badge:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+            .badge-success {
+  background-color: #468847;
+}
+      </style>  
+    <title>{{title}} </title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="stylesheets/style.css" rel="stylesheet" />
+<link href="menu/style.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="menu/iconic.css" media="screen" rel="stylesheet" type="text/css" />
+		<script src="menu/prefix-free.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+<link href="css/bootstrap-theme.css" rel="stylesheet" />
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/node_modules/angular/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="text/javascript" href="js/jqur.js"/>
+    <link rel="text/javascript" href="js/checkout.js"/>
+    <script src="js/typeahead.min.js"></script>
+  </head>
+  <body >
+{{> header }}
+<link rel="text/javascript" href="js/jqur.js"/>
+<div class="container">
+    {{{body}}}
+    </div>
+    <script src="js/delete.js"></script>
+    
+  <script src="js/bootstrap.min.js">
+  </script>
+ 
+    {{> footer }}
+    </div>
+  </body>
+</html>
